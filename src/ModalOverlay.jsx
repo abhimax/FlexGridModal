@@ -1,17 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
-import { lineItems5, lineItems20, lineItems60 } from "./data/lineItems";
+import {
+  lineItems5,
+  lineItems20,
+  lineItems60,
+  lineItems100,
+} from "./data/lineItems";
 
 const ModalOverlay = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const modalRef = useRef(null);
+  const [modalSize, setModalSize] = useState("col-2");
   useEffect(() => {
     const ticketModal = modalRef.current;
     if (ticketModal?.scrollWidth > ticketModal?.clientWidth) {
       console.log("Overflow detected");
+      if (modalSize === "col-2") {
+        setModalSize("col-4");
+      } else if (modalSize === "col-4") {
+        setModalSize("col-6");
+      }
     } else {
       console.log("No overflow");
     }
-  }, [isModalOpen]);
+  }, [isModalOpen, modalSize]);
 
   const openModal = () => {
     setModalOpen(true);
@@ -28,7 +39,7 @@ const ModalOverlay = () => {
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div
-            className="modal col-2"
+            className={`modal ${modalSize}`}
             ref={modalRef}
             onClick={(e) => e.stopPropagation()}
           >

@@ -95,6 +95,22 @@ button:focus-visible {
   width: 33%;
 }
 
+.modal.col-4 {
+  width: 66%;
+}
+
+.modal.col-4 .modal-content {
+  width: 25%;
+}
+
+.modal.col-6 {
+  width: 100%;
+}
+
+.modal.col-6 .modal-content {
+  width: 16.6%;
+}
+
 /* Styles for the container of individual line items */
 .modal-content-container {
   display: flex;
