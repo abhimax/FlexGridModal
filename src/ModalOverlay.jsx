@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { lineItems5, lineItems20, lineItems60 } from "./data/lineItems";
 
 const ModalOverlay = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const modalRef = useRef(null);
+  useEffect(() => {
+    const ticketModal = modalRef.current;
+    if (ticketModal?.scrollWidth > ticketModal?.clientWidth) {
+      console.log("Overflow detected");
+    } else {
+      console.log("No overflow");
+    }
+  }, [isModalOpen]);
 
   const openModal = () => {
     setModalOpen(true);
@@ -18,9 +27,13 @@ const ModalOverlay = () => {
       <button onClick={openModal}>Open Modal</button>
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal col-2" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="modal col-2"
+            ref={modalRef}
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="modal-content-container">
-              {lineItems5.map((item, index) => (
+              {lineItems60.map((item, index) => (
                 <div className="modal-content" key={index}>
                   {item}
                 </div>
