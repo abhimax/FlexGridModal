@@ -30,6 +30,7 @@ const ModalOverlay = () => {
 
   const closeModal = () => {
     setModalOpen(false);
+    setModalSize("col-2");
   };
 
   return (
@@ -43,8 +44,15 @@ const ModalOverlay = () => {
             ref={modalRef}
             onClick={(e) => e.stopPropagation()}
           >
+            <div className="modal-header">
+              <h1>Modal Name</h1>
+              <button className="header-btn">05</button>
+              <button className="header-btn">20</button>
+              <button className="header-btn">60</button>
+              <button className="header-btn">100</button>
+            </div>
             <div className="modal-content-container">
-              {lineItems60.map((item, index) => (
+              {lineItems100.map((item, index) => (
                 <div className="modal-content" key={index}>
                   {item}
                 </div>
