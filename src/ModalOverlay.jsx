@@ -9,19 +9,25 @@ import {
 const ModalOverlay = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const modalRef = useRef(null);
-  const [modalSize, setModalSize] = useState("col-2");
+  const [modalSize, setModalSize] = useState("col-1");
   const [lineItemList, setLineItemList] = useState(lineItems20);
   useEffect(() => {
     const ticketModal = modalRef.current;
     if (ticketModal?.scrollWidth > ticketModal?.clientWidth) {
       console.log("Overflow detected");
-      if (modalSize === "col-2") {
+      if (modalSize === "col-1") {
+        setModalSize("col-2");
+      } else if (modalSize === "col-2") {
+        setModalSize("col-3");
+      } else if (modalSize === "col-3") {
         setModalSize("col-4");
       } else if (modalSize === "col-4") {
+        setModalSize("col-5");
+      } else if (modalSize === "col-5") {
         setModalSize("col-6");
+      } else {
+        console.log("No overflow");
       }
-    } else {
-      console.log("No overflow");
     }
   }, [isModalOpen, modalSize, lineItemList]);
 
@@ -31,11 +37,11 @@ const ModalOverlay = () => {
 
   const closeModal = () => {
     setModalOpen(false);
-    setModalSize("col-2");
+    setModalSize("col-1");
   };
 
   const setLineItems = (items) => {
-    setModalSize("col-2");
+    setModalSize("col-1");
     setLineItemList(items);
   };
 
