@@ -10,6 +10,7 @@ const ModalOverlay = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const modalRef = useRef(null);
   const [modalSize, setModalSize] = useState("col-2");
+  const [lineItemList, setLineItemList] = useState(lineItems20);
   useEffect(() => {
     const ticketModal = modalRef.current;
     if (ticketModal?.scrollWidth > ticketModal?.clientWidth) {
@@ -22,7 +23,7 @@ const ModalOverlay = () => {
     } else {
       console.log("No overflow");
     }
-  }, [isModalOpen, modalSize]);
+  }, [isModalOpen, modalSize, lineItemList]);
 
   const openModal = () => {
     setModalOpen(true);
@@ -31,6 +32,11 @@ const ModalOverlay = () => {
   const closeModal = () => {
     setModalOpen(false);
     setModalSize("col-2");
+  };
+
+  const setLineItems = (items) => {
+    setModalSize("col-2");
+    setLineItemList(items);
   };
 
   return (
@@ -46,13 +52,33 @@ const ModalOverlay = () => {
           >
             <div className="modal-header">
               <h1>Modal Name</h1>
-              <button className="header-btn">05</button>
-              <button className="header-btn">20</button>
-              <button className="header-btn">60</button>
-              <button className="header-btn">100</button>
+              <button
+                className="header-btn"
+                onClick={() => setLineItems(lineItems5)}
+              >
+                05
+              </button>
+              <button
+                className="header-btn"
+                onClick={() => setLineItems(lineItems20)}
+              >
+                20
+              </button>
+              <button
+                className="header-btn"
+                onClick={() => setLineItems(lineItems60)}
+              >
+                60
+              </button>
+              <button
+                className="header-btn"
+                onClick={() => setLineItems(lineItems100)}
+              >
+                100
+              </button>
             </div>
             <div className="modal-content-container">
-              {lineItems100.map((item, index) => (
+              {lineItemList.map((item, index) => (
                 <div className="modal-content" key={index}>
                   {item}
                 </div>
