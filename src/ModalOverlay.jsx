@@ -3,6 +3,7 @@ import {
   lineItems5,
   lineItems20,
   lineItems60,
+  lineItems80,
   lineItems100,
 } from "./data/lineItems";
 
@@ -75,6 +76,12 @@ const ModalOverlay = () => {
                 onClick={() => setLineItems(lineItems60)}
               >
                 60
+              </button>
+              <button
+                className="header-btn"
+                onClick={() => setLineItems(lineItems80)}
+              >
+                80
               </button>
               <button
                 className="header-btn"
